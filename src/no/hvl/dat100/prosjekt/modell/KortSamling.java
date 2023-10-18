@@ -3,6 +3,9 @@ package no.hvl.dat100.prosjekt.modell;
 import no.hvl.dat100.prosjekt.TODO;
 import no.hvl.dat100.prosjekt.kontroll.dommer.Regler;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Struktur for å lagre ei samling kort. Kan lagre hele kortstokken. Det finnes
  * en konstant i klassen Regler som angir antall kort i hver av de 4 fargene. Når
@@ -24,7 +27,9 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.constructor("KortSamling"));
+		// throw new UnsupportedOperationException(TODO.constructor("KortSamling"));
+		samling = new Kort[MAKS_KORT];
+		antall = 0;
 		// TODO - END
 	}
 
@@ -52,7 +57,8 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		// throw new UnsupportedOperationException(TODO.method());
+		return antall;
 		
 		// TODO - END
 	}
@@ -66,8 +72,8 @@ public class KortSamling {
 		
 		// TODO - START
 				
-		throw new UnsupportedOperationException(TODO.method());
-		
+		// throw new UnsupportedOperationException(TODO.method());
+		return antall == 0;
 		// TODO - END
 	}
 
@@ -81,7 +87,10 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		// throw new UnsupportedOperationException(TODO.method());
+		samling = Arrays.copyOf(samling, samling.length + 1);
+		samling[samling.length - 1] = kort;
+		antall += 1;
 		// TODO - END
 		
 	}
@@ -95,7 +104,33 @@ public class KortSamling {
 		// TODO - START
 		// Husk: bruk Regler.MAKS_KORT_FARGE for å få antall kort per farge
 		
-		throw new UnsupportedOperationException(TODO.method());
+		//throw new UnsupportedOperationException(TODO.method());
+		int counter = 0;
+		
+        for (int x = 1; x < Regler.MAKS_KORT_FARGE + 1; x++) {
+            samling[counter] = new Kort(Kortfarge.Hjerter, x);
+            counter++;
+            antall++;
+        }
+        
+        for (int x = 1; x < Regler.MAKS_KORT_FARGE + 1; x++) {
+            samling[counter] = new Kort(Kortfarge.Klover, x);
+            counter++;
+            antall++;
+        }
+        
+        for (int x = 1; x < Regler.MAKS_KORT_FARGE + 1; x++) {
+            samling[counter] = new Kort(Kortfarge.Ruter, x);
+            counter++;
+            antall++;
+        }
+        
+        for (int x = 1; x < Regler.MAKS_KORT_FARGE + 1; x++) {
+            samling[counter] = new Kort(Kortfarge.Spar, x);
+            counter++;
+            antall++;
+        }
+        
 		// TODO - END
 	}
 
@@ -106,7 +141,9 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		// throw new UnsupportedOperationException(TODO.method());
+		samling = new Kort[0];
+		antall = 0;
 		// TODO - END
 	}
 	
@@ -120,8 +157,10 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
-
+		// throw new UnsupportedOperationException(TODO.method());
+		Kort seeLast = erTom() ? null : samling[samling.length - 1];
+		
+		return seeLast;
 		// TODO - END
 		
 	}
@@ -136,8 +175,18 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		// throw new UnsupportedOperationException(TODO.method());
+		Kort takeLast;
 		
+		if (!erTom()) {
+		    takeLast = samling[samling.length - 1];
+		    samling = Arrays.copyOf(samling, samling.length - 1);
+		    antall --;
+		} else {
+		    takeLast = null;
+		}
+		
+		return takeLast;
 		// TODO - END
 	}
 	
@@ -152,8 +201,16 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
-		// return false;
+		
+		//throw new UnsupportedOperationException(TODO.method());
+		
+		for (Kort eachCard : samling) {
+			if (eachCard != null && eachCard.equals(kort)) {
+				return true;
+			}
+		}
+		
+		return false;
 		// TODO - END
 		
 	}
@@ -172,8 +229,11 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
-
+		// throw new UnsupportedOperationException(TODO.method());
+		System.out.println(samling.length);
+		samling.leggTilAlle();
+		
+		return false;
 		// TODO - END
 	}
 
@@ -187,10 +247,9 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
-
+		//throw new UnsupportedOperationException(TODO.method());
+		return samling;
 		// TODO - END
 	
 	}
-	
 }
